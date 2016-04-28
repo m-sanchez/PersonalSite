@@ -1,0 +1,14 @@
+<ion-view view-title="Skills">
+  <ion-content scroll="false" class="cover-background">
+<h3 class="skills-intro">I can say i’m quite good using:</h3>
+    <coverflow images="covers" on-cover-click="onCoverClick($cover)" on-change-cover="onChangeCover(id)"></coverflow>
+
+    <div class="tool-title">
+      <h3>{{currentName}}</h3>
+
+
+    </div>
+    <p ng-bind-html="currentDescription" class="tool-description"></p>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,43 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-cv" ng-class="{' bar-green-backed' : darkBar}">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+
+  <ion-content>
+
+    <div class="pic-wrapper" ng-click="goHome()" menu-close>
+    <img src="images/picture.jpg" alt="" class="pic-menu"/>
+      <h5>Miguel Sanchez</h5>
+      <h5 class="coloured">Full Stack Developer</h5>
+    </div>
+
+    <ion-list>
+      <ion-item menu-close href="#/app/experience" class="item item-icon-left item-icon-right">
+        <i class="icon ion-mouse"></i>  Experience<i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item menu-close href="#/app/education" class="item item-icon-left item-icon-right ">
+        <i class="icon ion-university"></i> Education<i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item menu-close href="#/app/skills" class="item item-icon-left item-icon-right">
+        <i class="icon ion-ios-star"></i>  Skills<i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item menu-close href="#/app/contact" class="item item-icon-left item-icon-right">
+        <i class="icon ion-ios-email"></i>  Contact<i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-side-menu>
+
+</ion-side-menus>
