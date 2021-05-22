@@ -41,7 +41,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: steroidcalculator
+          name: miguelsanchezweb
           path: dist/apps/steroidcalculator
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
