@@ -1,0 +1,51 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install angular
+        run: npm install -g @angular/cli
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: ng build personalSite --prod
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: personalSite
+          path: dist/apps/personalSite
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v1
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: steroidcalculator
+          path: dist/apps/steroidcalculator
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
